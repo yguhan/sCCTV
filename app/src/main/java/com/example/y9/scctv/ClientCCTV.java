@@ -129,18 +129,25 @@ public class ClientCCTV extends AppCompatActivity {
 
 
                             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-                            File f = new File("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg"); //"/storage/emulated/0/DCIM/camera/"+ "a" + ".txt" 퍼미션문제
+                            //File f = new File("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg"); //"/storage/emulated/0/DCIM/camera/"+ "a" + ".txt" 퍼미션문제
                             //저 경로가 내부메모리 기본 사진저장 경로인데, 왠지 모르겠지만 외장메모리 permission이 필요해. 인터넷이랑 외장permission만 있으면 되
                             //layout은 원래꺼 그대로 썼어
 
                             //String fileContents = readFileAsString("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg");
                             try{
+/***
+                                PrintWriter out = new PrintWriter(
+                                        new BufferedWriter(new OutputStreamWriter(
+                                                socket.getOutputStream())), true
+                                );
+                                out.println("11");
+                                out.println(img + ".jpg");
+    ***/
+                                dos.writeUTF("11");
+                                dos.writeUTF(img + ".jpg");
 
-                                //dos.writeUTF("11");  //파일이름 전송, readUTF로 받아
-
-
-                                FileInputStream fis = new FileInputStream(f);
-                                BufferedInputStream bis = new BufferedInputStream(fis);
+                                //FileInputStream fis = new FileInputStream(f);
+                                //BufferedInputStream bis = new BufferedInputStream(fis);
 
                                 /***
                                 PrintWriter out = new PrintWriter(
@@ -162,23 +169,22 @@ public class ClientCCTV extends AppCompatActivity {
                                 //int sizeOfJpg =(int) f.length();
                                 //out.println(String.valueOf(sizeOfJpg));
 
-
+                                /***
                                 int len;
                                 while((len = bis.read(buf)) != -1)  //파일의 남은 부분이 없을때까지 보내
                                 {
                                     dos.write(buf, 0, len);
                                 }
-
-                                //out.println(fileContents.length());
-
-                                //out.println(fileContents);
+                                ***/
+                                dos.writeUTF("12");
+                                //out.println("12");
                                 //out.println("12");
                                 img = null;
 
-                                dos.flush();
-                                dos.close();
-                                bis.close();
-                                fis.close();    //닫닫
+                                //dos.flush();
+                                //dos.close();
+                                //bis.close();
+                                //fis.close();    //닫닫
 
                             }
                             catch(Exception e){
