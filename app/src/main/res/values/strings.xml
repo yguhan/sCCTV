@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Scctv</string>
+    <string name="action_settings">Settings</string>
+    <string name="editText">Edit Text</string>
+    <string name="sendTxt">Send Text</string>
+    <string name="sendImg">Send Image</string>
+    <string name="title_activity_client_cctv">ClientCCTV</string>
+    <string name="title_activity_client_user">ClientUser</string>
+</resources>

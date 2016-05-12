@@ -1,0 +1,16 @@
+Index: app/src/main/java/com/example/y9/scctv/ClientThread.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/y9/scctv/ClientThread.java	(date 1458575229000)
++++ app/src/main/java/com/example/y9/scctv/ClientThread.java	(revision )
+@@ -22,7 +22,7 @@
+     private String name;
+ 
+     public ClientThread(Handler handler, String ip, int port, String name){
+-
++    //
+         try{
+             socket = new Socket(ip, port);
+         }catch (IOException e){
