@@ -1,6 +1,8 @@
 package com.example.y9.scctv;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -19,7 +22,8 @@ public class ClientUser extends AppCompatActivity {
 
     EditText editText;
     Button requestBtn;
-
+    Handler handler = new Handler();
+    TextView textView;
     String myName = "yguhan";
     String serverip = "ubuntu.poapper.com";
     //String serverip = "141.223.202.186";
@@ -33,10 +37,18 @@ public class ClientUser extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editText);
         requestBtn = (Button) findViewById(R.id.button2);
+        textView = (TextView) findViewById(R.id.textView2);
 
         final TCPClient tcpClient = new TCPClient();
         Thread cThread = new Thread(tcpClient);
         cThread.start();
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg){
+                textView.append(msg.getData().getString("msg")+ "\r\n");
+            }
+        };
 
         requestBtn.setOnClickListener(new View.OnClickListener() {
             @Override

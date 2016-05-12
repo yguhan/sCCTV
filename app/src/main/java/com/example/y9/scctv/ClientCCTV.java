@@ -44,7 +44,7 @@ public class ClientCCTV extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_text);
 
-        //textView = (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.textView2);
         editText = (EditText) findViewById(R.id.editText);
         Button sendTxtBtn = (Button) findViewById(R.id.sendTxt);
         Button sendImgBtn = (Button) findViewById(R.id.sendImg);
@@ -127,56 +127,59 @@ public class ClientCCTV extends AppCompatActivity {
                         else if(img!=null){
                             Log.v("IMG", img);
 
-                            /***
+
                             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
                             File f = new File("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg"); //"/storage/emulated/0/DCIM/camera/"+ "a" + ".txt" 퍼미션문제
                             //저 경로가 내부메모리 기본 사진저장 경로인데, 왠지 모르겠지만 외장메모리 permission이 필요해. 인터넷이랑 외장permission만 있으면 되
                             //layout은 원래꺼 그대로 썼어
-                            ***/
-                            String fileContents = readFileAsString("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg");
+
+                            //String fileContents = readFileAsString("/storage/emulated/0/DCIM/Camera/"+ img + ".jpg");
                             try{
 
                                 //dos.writeUTF("11");  //파일이름 전송, readUTF로 받아
 
-                                /***
+
                                 FileInputStream fis = new FileInputStream(f);
                                 BufferedInputStream bis = new BufferedInputStream(fis);
-                                ***/
+
+                                /***
                                 PrintWriter out = new PrintWriter(
                                         new BufferedWriter(new OutputStreamWriter(
                                                 socket.getOutputStream())), true
                                 );
+                                ***/
+                                //out.println("11");
 
-                                out.println("11");
 
-                                /***
                                 byte[] buf = new byte[1024];    //받을때도 같은 버퍼크기로 받아
 
+                                /***
                                 int jpgSize = (int)f.length();
                                 dos.write(buf, 0, jpgSize);
                                 ***/
 
-                                /***
-                                int sizeOfJpg =(int) f.length();
-                                out.println(String.valueOf(sizeOfJpg));
+
+                                //int sizeOfJpg =(int) f.length();
+                                //out.println(String.valueOf(sizeOfJpg));
+
 
                                 int len;
                                 while((len = bis.read(buf)) != -1)  //파일의 남은 부분이 없을때까지 보내
                                 {
                                     dos.write(buf, 0, len);
                                 }
-                                ***/
-                                out.println(fileContents.length());
+
+                                //out.println(fileContents.length());
 
                                 //out.println(fileContents);
                                 //out.println("12");
+                                img = null;
 
-                                /***
                                 dos.flush();
                                 dos.close();
                                 bis.close();
                                 fis.close();    //닫닫
-                                ***/
+
                             }
                             catch(Exception e){
                                 e.printStackTrace();
